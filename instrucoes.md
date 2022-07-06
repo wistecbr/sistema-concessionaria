@@ -25,3 +25,17 @@ Quando fazemos a Mundança do M*ajor os outro serão zerados.
 Quando mudamos o *Minor* o path é zerado.
 
 Ex.: V1.1.5 -> 1.2.0
+
+# Changelog
+
+* **Added**: Quando adicionamos uma nova funcionalidade
+
+* **Changed**: Alteração na funcionalidade
+
+* **Deprecated**: Funcionacionade que será removida em outra versão
+
+* **Removed** : Remove uma funcionacionade
+
+* **Fixed**: Quando corrigimos algum bug
+
+* **Security**: Casos de vulnerabilidade
