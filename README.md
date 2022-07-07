@@ -53,3 +53,5 @@ INSERT INTO users (login, password, nome, tipo) VALUES ('admin', '21232f297a57a5
 *Obs.:* **login:** admin **senha:** admin
 
 ## Deploy
+
+Sistema disponivél [http://acai.epizy.com](http://acai.epizy.com)
