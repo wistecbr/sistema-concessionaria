@@ -46,12 +46,38 @@ DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_general_ci;
 ````
 
-5) Insera o usuário Admin *(Teste)* no sistema.
+5) Insira o usuário Admin *(Teste)* no sistema.
 ```SQL
 INSERT INTO users (login, password, nome, tipo) VALUES ('admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrador', 1);
 ```
 *Obs.:* **login:** admin **senha:** admin
 
 ## Deploy
+Para o Deploy foi escolhido o servidor do [InfinityFree](https://www.infinityfree.net/), por ser um servidor que possui *PHP* e banco de dados *MySql/MariaDB*, necessários para execução do nosso sistema e por ser um Servidor gratuito. 
 
+Sendo necessário, previamente possuir uma conta no mesmo e acesso ao painel de um dominio, criado no servidor do [InfinityFree](https://app.infinityfree.net/accounts)
+
+### Banco de dados 
+* Criar um banco de dados no servidor do InfinityFree.
+* Criar as tabelas no servidor do InfinityFree, conforme as descrições das tabelas no passo [SOBRE BANCO DE DADOS](https://github.com/wistech7l/sistema-concessionaria#sobre-o-banco-de-dados)
+
+### Variavéis do Secret 
+Será necessário adicionar as variavéis de ambiente no Secrets do Github, para a realização do deploy automatizado, [disponivél aqui](https://github.com/wistech7l/sistema-concessionaria/blob/main/.github/workflows/deploy.yml)
+
+* ***DB_DATABASE***: Referente ao nome do banco de dados criado no InfinityFree
+
+* ***DB_HOST***: Referente *URL* do servidor de banco de dados criado no InfinityFree
+
+* ***DB_PASS***: Referente a senha utilizada para acessar o banco de dados criado no InfinityFree
+
+* ***DB_USER***: Referente ao usuário utilizado para acessar o banco de dados criado no InfinityFree
+
+* ***FTP_HOST***: Referente a URL do servidor *FTP*, para envio dos arquivos para o servidor do InfinityFree
+
+* ***FTP_PASS***: Referente a senha utilizada para envio dos arquivos ao servidor do InfinityFree, via *FTP*
+
+* ***FTP_USER***: Referente ao usuário utilizado para envio dos arquivos ao Servidor do InfinityFree, via *FTP*
+
+
+## Atualmente disponivél
 Sistema disponivél [http://acai.epizy.com](http://acai.epizy.com)
