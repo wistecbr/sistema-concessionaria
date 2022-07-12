@@ -1,5 +1,7 @@
 # Sistema Concessionária
 
+Histórico de atualizações do sistema disponivél no [CHANGELOG.](https://github.com/wistech7l/sistema-concessionaria/blob/main/changelog.md)
+
 ## Requisitos minímos 
 * PHP
 * MariaDB

@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.3.0 (12-07-2022)]()
+### Added
+    * Criação do CRUD para usuários
+
 ## [v1.2.0 (06-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.2.0)
 ### Added
 * Deploy automatizado no Servidor do InfinityFree utilizando Github Actions
