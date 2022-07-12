@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.3.0 (12-07-2022)]()
+## [v1.3.0 (12-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.3.0)
 ### Added
     * Criação do CRUD para usuários
 
