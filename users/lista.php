@@ -1,5 +1,7 @@
 <?php
 include '../lib/mysql.php';
+include '../lib/utils.php';
+$login = verificaSession();
 $users = listarUsers();
 ?>
 
@@ -20,6 +22,13 @@ $users = listarUsers();
     <header>
         <figure>
             <img src="" alt="logo">
+            <?php
+            if ($login !== 0) {
+                $name = $_SESSION['user']['nome'];
+                echo "<p>$name</p>";
+                echo '<a href="../lib/valida.php?logout">Logout</a>';
+            }
+            ?>
         </figure>
         <ul>
             <li> <a href="../">Home</a></li>

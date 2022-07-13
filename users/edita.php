@@ -1,6 +1,8 @@
 <?php
 include '../lib/mysql.php';
-    $login = 0;
+include '../lib/utils.php';
+$login = verificaSession();
+
     if(isset($_GET['id'])){
         $id = (int) $_GET['id'];
         $user = buscarUserId($id);
@@ -26,6 +28,13 @@ include '../lib/mysql.php';
     <header>
         <figure>
             <img src="" alt="logo">
+            <?php
+            if ($login !== 0) {
+                $name = $_SESSION['user']['nome'];
+                echo "<p>$name</p>";
+                echo '<a href="../lib/valida.php?logout">Logout</a>';
+            }
+            ?>
         </figure>
         <ul>
             <li> <a href="../">Home</a></li>
