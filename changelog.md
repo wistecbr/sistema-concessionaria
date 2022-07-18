@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.4.1 (18-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.4.1)
+### Fixed
+* Restrição na página de editar user para usuários do tipo diferente ADM e para usuários diferente do usuário logado.
+* Adicionar link do painel na página de HOME quando logado.
+* Adicionar verificação de user logado na página de bemvindo.
+
 ## [v1.4.0 (12-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.4.0)
 ### Added
 * Adicionado Session de usuarios

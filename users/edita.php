@@ -1,14 +1,24 @@
 <?php
 include '../lib/mysql.php';
 include '../lib/utils.php';
+// somente o proprio usuario e usuarios do tipo ADM = 1 poderão editar user
+// o proprio usuario não podera alterar seu tipo de usuário, somente ADM poderá alterar o tipo
+
 $login = verificaSession();
 
-    if(isset($_GET['id'])){
-        $id = (int) $_GET['id'];
-        $user = buscarUserId($id);
-    }else{
-        header('Location: ../bemvindo.php');
-    }
+if (isset($_GET['id'])) {
+    $id = (int) $_GET['id'];
+    $user = buscarUserId($id);
+} else {
+    header('Location: ../bemvindo.php');
+}
+
+// somente user do tipo adm pode editar tipo
+$editaTipo = $_SESSION['user']['tipo'] === 1;
+if (!($editaTipo || $_SESSION['user']['id'] === $user['id'])) {
+    // caso não seja ADM e nem o proprio user redireciona para acesso restrito
+    header('Location: ../acessorestrito.php');
+}
 ?>
 
 
@@ -24,6 +34,7 @@ $login = verificaSession();
     <script src="../assests/js/utils.js" defer></script>
     <title>Editar Usuário</title>
 </head>
+
 <body>
     <header>
         <figure>
@@ -45,44 +56,54 @@ $login = verificaSession();
     <main>
         <form action="../lib/valida.php?edita=users" method="post" enctype="multipart/form-data">
             <p>
-                <input name="id" type="text" id="box_nome" style="display: none;" <?php echo 'value ="'. $id .'"' ?>>
+                <input name="id" type="text" id="box_nome" style="display: none;" <?php echo 'value ="' . $id . '"' ?>>
             </p>
             <p>
                 <label> Nome: </label>
-                <input name="nome" type="text" id="box_nome" <?php echo 'value ="'.$user['nome'].'"' ?> >
+                <input name="nome" type="text" id="box_nome" <?php echo 'value ="' . $user['nome'] . '"' ?>>
             </p>
             <p>
                 <label> login: </label>
-                <input id="box_login" name="login" type="text" <?php echo 'value ="'.$user['login'].'"' ?>>
+                <input id="box_login" name="login" type="text" <?php echo 'value ="' . $user['login'] . '"' ?>>
             </p>
             <p>
                 <label> Tipo: </label>
-                <select id="box_tipo" name="tipo" >
-                    <?php
-                        $lista = [
-                            array(
-                                'value' => 1,
-                                'nome' => 'Administrador'
-                            ),
-                            array(
-                                'value' => 2,
-                                'nome' => 'Cliente'
-                            ),
-                            array(
-                                'value' => 3,
-                                'nome' => 'Funcionário'
-                            )                            
-                            ];
 
-                        for($i =0; $i < count($lista); $i++){
-                            if($lista[$i]['value'] === $user['tipo']){
-                                echo '<option value="'.$lista[$i]['value']. '" selected>'.$lista[$i]['nome'].'</option>';
-                            }else {
-                                echo '<option value="'.$lista[$i]['value']. '">'.$lista[$i]['nome'].'</option>';
-                            }
+                <?php
+                $lista = [
+                    array(
+                        'value' => 1,
+                        'nome' => 'Administrador'
+                    ),
+                    array(
+                        'value' => 2,
+                        'nome' => 'Cliente'
+                    ),
+                    array(
+                        'value' => 3,
+                        'nome' => 'Funcionário'
+                    )
+                ];
+
+                if($editaTipo){
+                    echo '<select id="box_tipo" name="tipo" >';
+                    for ($i = 0; $i < count($lista); $i++) {
+                        if ($lista[$i]['value'] === $user['tipo']) {
+                            echo '<option value="' . $lista[$i]['value'] . '" selected>' . $lista[$i]['nome'] . '</option>';
+                        } else {
+                            echo '<option value="' . $lista[$i]['value'] . '">' . $lista[$i]['nome'] . '</option>';
                         }
-                    ?>
-                </select>
+                    }
+                    echo '</select>';
+                } else {
+                    for ($i = 0; $i < count($lista); $i++) {
+                        if ($lista[$i]['value'] === $user['tipo']) {
+                            echo '<lable>' . $lista[$i]['nome'] . '</lable>';
+                            echo '<input type="hidden" name="tipo" VALUE="'.$lista[$i]['value'].'">';
+                        }
+                    }
+                }
+                ?>
             </p>
             <p>
                 <input type="submit" value="Editar">
@@ -93,4 +114,5 @@ $login = verificaSession();
     <footer>
     </footer>
 </body>
+
 </html>

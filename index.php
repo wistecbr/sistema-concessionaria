@@ -33,6 +33,8 @@ $login = verificaSession();
             <?php
             if ($login === 0) {
                 echo '<li><a href="./login.php">Login</a></li>';
+            }else {
+                echo '<li><a href="./bemvindo.php">Painel</a></li>';
             }
             ?>
         </ul>

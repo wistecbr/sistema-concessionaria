@@ -5,6 +5,9 @@ $user = '';
 if (isset($_GET) && isset($_GET['username'])) {
     $user =htmlspecialchars( $_GET['username']);
 }
+if($user === '' && $_SESSION['user']){
+    $user = $_SESSION['user']['nome'];
+}
 ?>
 
 <!DOCTYPE html>

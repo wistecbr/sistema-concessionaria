@@ -40,7 +40,6 @@ if(isset($_GET) && isset($_GET['edita'])){
 
         $id = (int)($_POST['id']);
         editUser($id,$name,$login,$typeUser);
-
     }
 }
 
