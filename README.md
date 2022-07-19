@@ -2,6 +2,9 @@
 
 Histórico de atualizações do sistema disponivél no [CHANGELOG.](https://github.com/wistech7l/sistema-concessionaria/blob/main/changelog.md)
 
+## Atualmente disponivél
+Sistema disponivél [http://acai.epizy.com](http://acai.epizy.com)
+
 ## Requisitos minímos 
 * PHP
 * MariaDB
@@ -32,27 +35,10 @@ Recomendamos a instalação do [XAMPP](https://www.apachefriends.org/download.ht
 3) Criar uma nova base de dados, com o nome que preferir
 *obs.:* nome utilizado deverá ser prenchido no aquivo *.env*
 
-4) Criar tabela `users` no banco de dados, usando a seguinte instrução SQL.
+4) Após a inserção do banco no *.env* para criação das tabelas é necessário apenas acessar a página 
+*initDb.php*, em localhost: [Abrir site no navegador: *localhost/initDb.php*](http://localhost/initDb.php)
 
-```SQL 
-CREATE TABLE users (
-	id INT auto_increment NOT NULL,
-	login varchar(50) NOT NULL,
-	password varchar(100) NOT NULL,
-	nome varchar(50) NOT NULL,
-	tipo INT NOT NULL,
-	primary key(id)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8mb4
-COLLATE=utf8mb4_general_ci;
-````
-
-5) Insira o usuário Admin *(Teste)* no sistema.
-```SQL
-INSERT INTO users (login, password, nome, tipo) VALUES ('admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrador', 1);
-```
-*Obs.:* **login:** admin **senha:** admin
+*Obs.:* Usuário Test: **login:** admin **senha:** admin
 
 ## Deploy
 Para o Deploy foi escolhido o servidor do [InfinityFree](https://www.infinityfree.net/), por ser um servidor que possui *PHP* e banco de dados *MySql/MariaDB*, necessários para execução do nosso sistema e por ser um Servidor gratuito. 
@@ -61,7 +47,10 @@ Sendo necessário, previamente possuir uma conta no mesmo e acesso ao painel de 
 
 ### Banco de dados 
 * Criar um banco de dados no servidor do InfinityFree.
-* Criar as tabelas no servidor do InfinityFree, conforme as descrições das tabelas no passo [SOBRE BANCO DE DADOS](https://github.com/wistech7l/sistema-concessionaria#sobre-o-banco-de-dados)
+* Criar as tabelas no servidor do InfinityFree, necessário acessar a página *initDb.php*, por exemplo: 
+Se seu dominio for *test.epizy.com* acesse *test.epizy.com/initDb.php* para criar as tabelas, caso ocorra tudo bem, você será redirecionado para página de home, podendo realizar o login com o usuário Test.
+
+*Obs.:* Usuário Test: **login:** admin **senha:** admin
 
 ### Variavéis do Secret 
 Será necessário adicionar as variavéis de ambiente no Secrets do Github, para a realização do deploy automatizado, [disponivél aqui](https://github.com/wistech7l/sistema-concessionaria/blob/main/.github/workflows/deploy.yml)
@@ -79,7 +68,3 @@ Será necessário adicionar as variavéis de ambiente no Secrets do Github, para
 * ***FTP_PASS***: Referente a senha utilizada para envio dos arquivos ao servidor do InfinityFree, via *FTP*
 
 * ***FTP_USER***: Referente ao usuário utilizado para envio dos arquivos ao Servidor do InfinityFree, via *FTP*
-
-
-## Atualmente disponivél
-Sistema disponivél [http://acai.epizy.com](http://acai.epizy.com)

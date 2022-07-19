@@ -250,3 +250,59 @@ function buscarMarcaId($id){
         header("Location: ../acessorestrito.php?erro=banco&editar=$id");
     }
 }
+
+
+function buscarUserLogin($login){
+    $link = conecta(); // recebe a conexão com o banco de dados
+    $query = "SELECT id, nome, login, tipo FROM users WHERE login = '$login' LIMIT 1;"; // comando SQL que será executado
+
+    if ($link !== NULL) {
+        $result = mysqli_query($link, $query);
+        if (mysqli_num_rows($result) > 0) {
+            /*  mysqli_num_rows nos retorna a quantidade de linhas que o result encontrou
+                na consulta ao Banco de Dados.
+                Lembrar que nossa função retornará o usuário econtrado
+              */
+            while ($row = mysqli_fetch_row($result)) {
+                /*
+                 mysqli_fetch_row irá percorrer a resposta do banco linha por linha
+                 e armazenar no objeto $row
+                 aqui vamos converter o objeto $row em um objeto $user 
+                 */
+                $user = array(
+                    'id' => $row[0],
+                    'nome' => $row[1],
+                    'login' => $row[2],
+                    'tipo' => (int)$row[3],
+                );
+            }
+            return $user;
+        } else {
+            return 0;
+        }
+    } else {
+        echo 'Erro Conecta Banco <br/>';
+        return -1; 
+    }
+}
+
+function execQuery($query, $title){
+    echo "<br/> $title ";
+    $link = conecta();
+
+    if ($link !== NULL) {
+        $result = mysqli_query($link, $query);
+        echo '<br/> RESULT: ';
+        var_dump($result);
+        echo '<br/>';
+        if ($result) {
+            return 1;
+        } else {
+            echo 'Erro Conecta QUERY/Exists <br/>';
+            return 0;
+        }
+    } else {
+        echo 'Erro Conecta Banco <br/>';
+        return -1; 
+    }
+}

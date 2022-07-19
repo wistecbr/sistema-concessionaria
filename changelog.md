@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.6.0 (18-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.5.0)
+### Added
+* Criação  de funcionalidade para adiconar via script tabelas ao banco de dados.
+
 ## [v1.5.0 (18-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.5.0)
 ### Added
 * Criação do CRUD para Marcas
