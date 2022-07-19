@@ -2,7 +2,7 @@
 include '../lib/mysql.php';
 include '../lib/utils.php';
 $login = verificaSession();
-$users = listarUsers();
+$marcas = listarMarcas();
 ?>
 
 <!DOCTYPE html>
@@ -39,40 +39,19 @@ $users = listarUsers();
         <table>
             <!-- cabeçalho da tabel -->
             <tr>
+                <th> id </th>
                 <th> Nome </th>
-                <th> Login </th>
-                <th> Tipo </th>
                 <th> Opções </th>
             </tr>
             <!-- FIM cabeçalho da tabel -->
             <?php
-            /* 
-                Aqui vamos criar um comando for para percorer o vetor que irá conter o objeto de usuários ($users)
-                 que criamos no MYSQL.php  que está sendo recuperado no inicio desse arquivo.
-            */
-
-            for ($i = 0; $i < count($users); $i++) {
+            for ($i = 0; $i < count($marcas); $i++) {
                 echo '<tr>'; // tag html para iniciar linha de tabela 
-                    echo '<td>'.$users[$i]['nome'].'</td>'; // primeira coluna da tabela ...
-                    echo '<td>'.$users[$i]['login'].'</td>';
+                    echo '<td>'.$marcas[$i]['id'].'</td>'; // primeira coluna da tabela ...
+                    echo '<td>'.$marcas[$i]['nome'].'</td>';
                     echo '<td>';
-                        switch($users[$i]['tipo']){
-                            case 1:
-                                echo 'Administrador';
-                                break;
-                            case 2:
-                                echo 'Cliente';
-                                break;
-                            case 3:
-                                echo 'Funcionário';
-                                break;
-                            default:
-                                echo 'Inválido';
-                        }
-                    echo '</td>'; // aqui vamos ter mudar de inteiro para string
-                    echo '<td>';
-                        echo '<button onclick="editarUser('.$users[$i]['id'].')">Editar</button>';
-                        echo '<button onclick="detelarUser('.$users[$i]['id'].')">Deletar</button>';
+                        echo '<button onclick="editar(`marcas`,'.$marcas[$i]['id'].')">Editar</button>';
+                        echo '<button onclick="deletar(`marcas`,'.$marcas[$i]['id'].')">Deletar</button>';
                     echo '</td>'; 
                 echo'</tr>'; // fim da linha da tabela
             }

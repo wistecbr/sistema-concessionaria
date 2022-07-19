@@ -47,11 +47,9 @@ if (!($editaTipo || $_SESSION['user']['id'] === $user['id'])) {
             }
             ?>
         </figure>
-        <ul>
-            <li> <a href="../">Home</a></li>
-            <li> <a href="../users/cadastra.php">Cadastra Usuário</a></li>
-            <li> <a href="../users/lista.php">Lista Usuário</a></li>
-        </ul>
+        <?php
+            exibeMenuSubpasta();
+        ?>
     </header>
     <main>
         <form action="../lib/valida.php?edita=users" method="post" enctype="multipart/form-data">

@@ -31,26 +31,10 @@ $login = verificaSession();
         ?>
     </header>
     <main>
-        <form action="../lib/valida.php?cadastra=users" method="post" enctype="multipart/form-data">
+        <form action="../lib/valida.php?cadastra=marcas" method="post" enctype="multipart/form-data">
             <p>
                 <label> Nome: </label>
                 <input name="nome" type="text" id="box_nome">
-            </p>
-            <p>
-                <label> login: </label>
-                <input id="box_login" name="login" type="text">
-            </p>
-            <p>
-                <label> Senha: </label>
-                <input name="password" type="password" id="box_password">
-            </p>
-            <p>
-                <label> Tipo: </label>
-                <select id="box_tipo" name="tipo">
-                    <option value="1">Administrador</option>
-                    <option value="2">Cliente</option>
-                    <option value="3">Funcionário</option>
-                </select>
             </p>
             <p>
                 <input type="submit" value="Cadastrar">

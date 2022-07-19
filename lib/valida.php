@@ -20,7 +20,11 @@ if(isset($_GET) && isset($_GET['cadastra'])){
         $typeUser = (int)($_POST['tipo']);
 
         cadastrarUser($name, $username, $password,$typeUser);
+    }else if ($cadastra === 'marcas' && isset($_POST['nome'])){
+        $name = htmlspecialchars($_POST['nome']);
+        cadastraMarca($name);
     }
+
 
 }
 
@@ -40,6 +44,10 @@ if(isset($_GET) && isset($_GET['edita'])){
 
         $id = (int)($_POST['id']);
         editUser($id,$name,$login,$typeUser);
+    }else if ($edita === 'marcas' && isset($_POST['nome'])){
+        $name = htmlspecialchars($_POST['nome']);
+        $id = (int)($_POST['id']);
+        editaMarca($id, $name);
     }
 }
 

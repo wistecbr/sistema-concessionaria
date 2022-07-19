@@ -171,3 +171,82 @@ function editUser($id,$name,$login,$typeUser){
         }
     }
 }
+
+function cadastraMarca($name){
+    $link = conecta();
+    $query = "INSERT INTO marcas (nome) values('$name')";
+    if ($link !== NULL) {
+        $result = mysqli_query($link, $query);
+        var_dump($result);
+
+        if ($result) {
+            header("Location: ../marcas/lista.php"); //redirect to login page if login exist
+        } else {
+            header("Location: ../marcas/cadastra.php?erro=query"); // redirect to cadastra if login don't exist
+        }
+    } else {
+        header("Location: ../acessorestrito.php?erro=banco"); // if link is null redirect to login  
+    }
+}
+
+function listarMarcas(){
+    $link = conecta(); // recebe a conexão com o banco de dados
+    $query = "SELECT id, nome FROM marcas;"; // comando SQL que será executado
+
+    if ($link !== NULL) {
+        $result = mysqli_query($link, $query);
+        if (mysqli_num_rows($result) >= 0) {
+            $marcas = [];
+            while ($row = mysqli_fetch_row($result)) {
+                $marca = array(
+                    'id' => $row[0],
+                    'nome' => $row[1]
+                );
+                array_push($marcas, $marca);
+            }
+            return $marcas;
+        } else {
+            // houve algum erro inesperado 
+        }
+    } else {
+        //vamos criar uma página a parte para redirecionar em casos de erros; 
+    }
+}
+
+function editaMarca($id,$name){
+    $link = conecta();
+    $query = "UPDATE marcas SET nome='$name' WHERE id=$id";
+
+    if ($link !== NULL) {
+        $result = mysqli_query($link, $query);
+        if ($result) {
+            header('Location: ../marcas/lista.php');
+        } else {
+            header("Location: ../marcas/edita.php?id=$id&erro");
+        }
+    }
+}
+
+function buscarMarcaId($id){
+    $link = conecta(); // recebe a conexão com o banco de dados
+    $query = "SELECT id, nome FROM marcas WHERE id = $id;"; // comando SQL que será executado
+
+    if ($link !== NULL) {
+        $result = mysqli_query($link, $query);
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_row($result)) {
+                $marca = array(
+                    'id' => $row[0],
+                    'nome' => $row[1]
+                );
+            }
+            return $marca;
+        } else {
+            // houve algum erro inesperado 
+            header("Location: ../marcas/cadastra.php");
+        }
+    } else {
+        //vamos criar uma página a parte para redirecionar em casos de erros; 
+        header("Location: ../acessorestrito.php?erro=banco&editar=$id");
+    }
+}

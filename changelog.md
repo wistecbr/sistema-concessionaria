@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.5.0 (18-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.5.0)
+### Added
+* Criação do CRUD para Marcas
+
 ## [v1.4.1 (18-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.4.1)
 ### Fixed
 * Restrição na página de editar user para usuários do tipo diferente ADM e para usuários diferente do usuário logado.
