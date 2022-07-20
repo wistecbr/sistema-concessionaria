@@ -1,6 +1,10 @@
 # Changelog
 
-## [v1.6.0 (18-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.5.0)
+## [v1.6.1 (19-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.6.1)
+### Fixed
+* coreção na exibição do menu nas páginas de edita
+
+## [v1.6.0 (19-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.6.0)
 ### Added
 * Criação  de funcionalidade para adiconar via script tabelas ao banco de dados.
 
