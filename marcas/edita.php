@@ -48,7 +48,7 @@ if (($_SESSION['user']['tipo'] === 2)) {
             ?>
         </figure>
         <?php
-            exibeMenuSubpasta();
+            exibeMenuSubpasta('.');
         ?>
     </header>
     <main>

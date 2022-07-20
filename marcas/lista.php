@@ -31,7 +31,7 @@ $marcas = listarMarcas();
             ?>
         </figure>
         <?php
-            exibeMenuSubpasta();
+            exibeMenuSubpasta('.');
         ?>
     </header>
     <main>

@@ -27,7 +27,7 @@ $login = verificaSession();
             ?>
         </figure>
         <?php
-            exibeMenuSubpasta();
+            exibeMenuSubpasta('.');
         ?>
     </header>
     <main>

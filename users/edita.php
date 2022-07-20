@@ -48,7 +48,7 @@ if (!($editaTipo || $_SESSION['user']['id'] === $user['id'])) {
             ?>
         </figure>
         <?php
-            exibeMenuSubpasta();
+            exibeMenuSubpasta('.');
         ?>
     </header>
     <main>
