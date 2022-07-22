@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.7.0 (22-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.7.0)
+### Added
+* CRUD de veiculos.
+
 ## [v1.6.2 (19-07-2022)](https://github.com/wistech7l/sistema-concessionaria/releases/tag/v1.6.2)
 ### Fixed
 * Coreção na exibição do menu na página de bemvindo (Painel)

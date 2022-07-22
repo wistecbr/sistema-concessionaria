@@ -15,6 +15,8 @@
         exibeSubMenu('users', 'Usuário',$dot);
         echo '<li id="bt_menu_marcas" ><button onclick="addMenu(`marcas`)">Marcas</button></li>';
         exibeSubMenu('marcas', 'Marca',$dot);
+        echo '<li id="bt_menu_marcas" ><button onclick="addMenu(`veiculos`)">Veiculo</button></li>';
+        exibeSubMenu('veiculos', 'Veiculo',$dot);
         echo '</ul>';
     }
 
@@ -24,4 +26,25 @@
         echo '<li> <a href=".'.$dot.'/'.$submenu.'/lista.php">Lista '.$nome.'s</a></li>';
         echo '</ul>';
     }
+
+    function parseTipoVeiculo($number){
+        switch ($number) {
+            case 1:
+                return 'Moto';
+            case 2:
+                return 'Carro';
+            case 3:
+                return 'Caminhão';         
+            default:
+                return 'Indefinido';
+        }
+
+    }
+    function parseVendidoVeiculo($number){
+        if($number === 1){
+            return 'Sim';
+        }else {
+            return 'Não';
+        }
+    }    
 ?>

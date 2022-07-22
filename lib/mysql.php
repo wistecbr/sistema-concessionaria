@@ -199,7 +199,7 @@ function listarMarcas(){
             $marcas = [];
             while ($row = mysqli_fetch_row($result)) {
                 $marca = array(
-                    'id' => $row[0],
+                    'id' => (INT) $row[0],
                     'nome' => $row[1]
                 );
                 array_push($marcas, $marca);
@@ -304,5 +304,102 @@ function execQuery($query, $title){
     } else {
         echo 'Erro Conecta Banco <br/>';
         return -1; 
+    }
+}
+
+function cadastraVeiculo($name, $valor, $tipo, $marca, $ano){
+    $link = conecta();
+    $query = "INSERT INTO veiculos (nome, valor, tipo, ano, marca_id, vendido) 
+        values('$name', $valor, $tipo, $ano, $marca, false)";
+    if ($link !== NULL) {
+        $result = mysqli_query($link, $query);
+        var_dump($result);
+
+        if ($result) {
+            header("Location: ../veiculos/lista.php"); //redirect to login page if login exist
+        } else {
+            header("Location: ../veiculos/cadastra.php?erro=query"); // redirect to cadastra if login don't exist
+        }
+    } else {
+        header("Location: ../acessorestrito.php?erro=banco"); // if link is null redirect to login  
+    }
+}
+
+// select v.id, v.nome, v.valor, v.ano, v.tipo, m.nome from veiculos v, marcas m where v.marca_id = m.id 
+
+function listarVeiculos(){
+    $link = conecta(); // recebe a conexão com o banco de dados
+    $query = "SELECT v.id, v.nome, v.valor, v.ano, v.tipo, m.nome, v.vendido 
+        FROM veiculos v, marcas m WHERE v.marca_id = m.id;"; // comando SQL que será executado
+
+    if ($link !== NULL) {
+        $result = mysqli_query($link, $query);
+        if (mysqli_num_rows($result) >= 0) {
+            $veiculos = [];
+            while ($row = mysqli_fetch_row($result)) {
+                $veiculo = array(
+                    'id' => $row[0],
+                    'nome' => $row[1],
+                    'valor' => (FLOAT) $row[2],
+                    'ano' => (INT) $row[3],
+                    'tipo' => (INT) $row[4],
+                    'marca' => $row[5],
+                    'vendido' => (INT) $row[6]
+                );
+                array_push($veiculos, $veiculo);
+            }
+            return $veiculos;
+        } else {
+            // houve algum erro inesperado 
+        }
+    } else {
+        //vamos criar uma página a parte para redirecionar em casos de erros; 
+    }
+}
+
+function buscarVeiculoId($id){
+    $link = conecta(); // recebe a conexão com o banco de dados
+    $query = "SELECT id, nome, valor, ano, tipo, marca_id 
+        FROM veiculos WHERE  id = $id;"; // comando SQL que será executado
+
+    if ($link !== NULL) {
+        $result = mysqli_query($link, $query);
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_row($result)) {
+                $veiculo = array(
+                    'id' => $row[0],
+                    'nome' => $row[1],
+                    'valor' => (FLOAT) $row[2],
+                    'ano' => (INT) $row[3],
+                    'tipo' => (INT) $row[4],
+                    'marca' => (INT) $row[5]
+                );
+            }
+            return $veiculo;
+        } else {
+            // houve algum erro inesperado 
+            header("Location: ../marcas/cadastra.php");
+        }
+    } else {
+        //vamos criar uma página a parte para redirecionar em casos de erros; 
+        header("Location: ../acessorestrito.php?erro=banco&editar=$id");
+    }
+
+}
+
+function editaVeiculo($id,$nome, $valor, $tipo, $marca, $ano, $vendido){
+
+    $link = conecta();
+    $query = "UPDATE veiculos SET nome='$nome', valor=$valor, tipo=$tipo, ano= $ano,marca_id=$marca,vendido=$vendido
+    WHERE id=$id";
+    echo $query;
+
+    if ($link !== NULL) {
+        $result = mysqli_query($link, $query);
+        if ($result) {
+            header('Location: ../veiculos/lista.php');
+        } else {
+            header("Location: ../veiculos/edita.php?id=$id&erro");
+        }
     }
 }

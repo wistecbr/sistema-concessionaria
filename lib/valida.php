@@ -12,6 +12,8 @@ if (isset($_POST) && isset($_POST['login']) && isset($_POST['password'])) {
 if(isset($_GET) && isset($_GET['cadastra'])){
     $cadastra = $_GET['cadastra'];
     // cadastro de USERS
+    echo 'valida '. $cadastra;
+    var_dump($_POST);
     if($cadastra === 'users' && isset($_POST['nome']) && isset($_POST['login']) && isset($_POST['password']) && isset ($_POST['tipo'])){
             
         $name = htmlspecialchars($_POST['nome']);
@@ -23,6 +25,15 @@ if(isset($_GET) && isset($_GET['cadastra'])){
     }else if ($cadastra === 'marcas' && isset($_POST['nome'])){
         $name = htmlspecialchars($_POST['nome']);
         cadastraMarca($name);
+    } else if ($cadastra === 'veiculos' && isset($_POST['nome']) && isset($_POST['valor']) && 
+    isset($_POST['ano']) && isset($_POST['marca']) && isset($_POST['tipo'])){
+        $nome = htmlspecialchars($_POST['nome']);
+        $valor = (FLOAT) $_POST['valor'];
+        $ano = (INT) $_POST['ano'];
+        $tipo = (INT) $_POST['tipo'];
+        $marca = (INT) $_POST['marca'];
+        cadastraVeiculo($nome, $valor, $tipo, $marca, $ano);
+
     }
 
 
@@ -48,6 +59,17 @@ if(isset($_GET) && isset($_GET['edita'])){
         $name = htmlspecialchars($_POST['nome']);
         $id = (int)($_POST['id']);
         editaMarca($id, $name);
+    }else if ($edita === 'veiculos' && isset($_POST['nome']) && isset($_POST['valor']) && 
+    isset($_POST['ano']) && isset($_POST['marca']) && isset($_POST['tipo'])){
+        $nome = htmlspecialchars($_POST['nome']);
+        $valor = (FLOAT) $_POST['valor'];
+        $ano = (INT) $_POST['ano'];
+        $tipo = (INT) $_POST['tipo'];
+        $marca = (INT) $_POST['marca'];
+        $vendido = 0;
+        $id = (INT) $_POST['id'];
+        editaVeiculo($id,$nome, $valor, $tipo, $marca, $ano, $vendido);
+
     }
 }
 
